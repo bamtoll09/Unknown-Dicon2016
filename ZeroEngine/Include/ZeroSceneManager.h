@@ -49,5 +49,6 @@ public:
 	void Render();
 
 	void ChangeScene(ZeroIScene * _scene, int _kindTr = -1, float _time = 2.0f, bool _isErase = true);
+	ZeroIScene *GetCurrentScene();
 	void Clear();
 };

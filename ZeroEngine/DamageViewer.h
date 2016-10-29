@@ -11,7 +11,7 @@ private:
 	bool activated;
 public:
 	DamageViewer(ZeroSprite *object);
-	virtual ~DamageViewer();
+	~DamageViewer();
 
 	void Update(float eTime);
 	void Render();

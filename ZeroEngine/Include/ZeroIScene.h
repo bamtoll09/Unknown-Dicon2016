@@ -6,11 +6,11 @@
 using namespace std;
 
 class ZeroIScene {
-protected:
+public:
 	typedef vector<ZeroIScene*> NODE;
 	NODE m_Node;
 
-protected:
+public:
 	// m_Mat은 위치, 회전각도, 크기등의 변수를 계산하여 위치변환한 행렬이다.
 	// 직접적으로 만지는 일은 권하지 않는다.
 	D3DXMATRIX m_Mat;

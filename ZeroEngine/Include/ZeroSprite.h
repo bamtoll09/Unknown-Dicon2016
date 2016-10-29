@@ -4,7 +4,7 @@
 #include "ZeroResource.h"
 
 class ZeroSprite : public ZeroIScene, public ZeroResource {
-private:
+public:
 	LPDIRECT3DTEXTURE9 texture;
 	string texturePath;
 	int renderState;

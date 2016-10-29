@@ -1,16 +1,21 @@
 #pragma once
 #include "Zero.h"
 #include "MPlayer.h"
-#include "DamageViewer.h"
+#include "MInventory.h"
+#include "MEnemyManager.h"
+#include "MRubbishManager.h"
 
 class Scene1 : public ZeroIScene
 {
 private:
 	MPlayer *mPlayer;
-	ZeroSprite *player2;
-	DamageViewer *damageViewer[3];
+	MEnemy *mEnemy;
 
+	bool initialized;
 	bool hit;
+	EnemyDeadInfo enemyDeadInfo;
+	GottenRubbishInfo gottenRubbishInfo;
+
 public:
 	Scene1();
 	~Scene1();

@@ -1,9 +1,56 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
+    <Filter Include="WinMain">
+      <UniqueIdentifier>{69884c26-f183-4c1f-bf16-01a9578cb481}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Precompiled Code">
+      <UniqueIdentifier>{90838b63-ee84-4194-a0c8-a550ff2b8a78}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game">
+      <UniqueIdentifier>{9b15b9bb-965b-411d-9288-48cbf87ba924}</UniqueIdentifier>
+      <Extensions>cpp;h</Extensions>
+    </Filter>
+    <Filter Include="Game\Objects">
+      <UniqueIdentifier>{aba1aa55-4ff9-42a7-8708-471fb29ed7cb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Scenes">
+      <UniqueIdentifier>{3a6d0d23-07dc-4e4c-9af1-91699c5d49ac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Scenes\1">
+      <UniqueIdentifier>{d5ed1600-93b2-4fff-983c-b1b20e74b50d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Objects\Player">
+      <UniqueIdentifier>{45093db1-fe19-4838-b014-87d454b7cd9c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Objects\Enemy">
+      <UniqueIdentifier>{fa6ddab3-ac74-4e0c-ab67-496b6c9f4ead}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Objects\Rubbish">
+      <UniqueIdentifier>{80daa7a2-9e1b-4b66-b380-21683e494463}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Util">
+      <UniqueIdentifier>{6135925a-4517-4237-b7c9-770d5a70cad1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Util\DamageViewer">
+      <UniqueIdentifier>{d23727ad-7be1-4105-9adb-80b9fd0b57d9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Util\EnemyManager">
+      <UniqueIdentifier>{27cb764a-7b55-4785-aa37-32fbf81ab702}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Util\RubbishManager">
+      <UniqueIdentifier>{064e5ee0-3f86-4390-8dcc-3ea305743b6b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\UI">
+      <UniqueIdentifier>{a008ad01-b483-421c-a76b-6a00f50d6e9e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\UI\Inventory">
+      <UniqueIdentifier>{be5fc1bd-6cdc-4712-adf5-4a2cb202ae17}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Examples">
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+      <Extensions>
+      </Extensions>
     </Filter>
     <Filter Include="Examples\01. SpriteExample">
       <UniqueIdentifier>{165d3d34-2518-4892-a687-7787e4d038f8}</UniqueIdentifier>
@@ -43,24 +90,6 @@
     </Filter>
     <Filter Include="Examples\13. SoundExample">
       <UniqueIdentifier>{e85895be-ea7c-42d8-a13a-b7385bbe7105}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="WinMain">
-      <UniqueIdentifier>{69884c26-f183-4c1f-bf16-01a9578cb481}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Precompiled Code">
-      <UniqueIdentifier>{90838b63-ee84-4194-a0c8-a550ff2b8a78}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Game">
-      <UniqueIdentifier>{9b15b9bb-965b-411d-9288-48cbf87ba924}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Game\Objects">
-      <UniqueIdentifier>{aba1aa55-4ff9-42a7-8708-471fb29ed7cb}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Game\Scenes">
-      <UniqueIdentifier>{3a6d0d23-07dc-4e4c-9af1-91699c5d49ac}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Game\Scenes\1">
-      <UniqueIdentifier>{d5ed1600-93b2-4fff-983c-b1b20e74b50d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -113,9 +142,26 @@
       <Filter>Game\Scenes\1</Filter>
     </ClInclude>
     <ClInclude Include="MPlayer.h">
-      <Filter>Game\Objects</Filter>
+      <Filter>Game\Objects\Player</Filter>
     </ClInclude>
-    <ClInclude Include="DamageViewer.h" />
+    <ClInclude Include="MEnemy.h">
+      <Filter>Game\Objects\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="MRubbish.h">
+      <Filter>Game\Objects\Rubbish</Filter>
+    </ClInclude>
+    <ClInclude Include="MRubbishManager.h">
+      <Filter>Game\Util\RubbishManager</Filter>
+    </ClInclude>
+    <ClInclude Include="DamageViewer.h">
+      <Filter>Game\Util\DamageViewer</Filter>
+    </ClInclude>
+    <ClInclude Include="MEnemyManager.h">
+      <Filter>Game\Util\EnemyManager</Filter>
+    </ClInclude>
+    <ClInclude Include="MInventory.h">
+      <Filter>Game\UI\Inventory</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SpriteExample.cpp">
@@ -167,10 +213,25 @@
       <Filter>Game\Scenes\1</Filter>
     </ClCompile>
     <ClCompile Include="MPlayer.cpp">
-      <Filter>Game\Objects</Filter>
+      <Filter>Game\Objects\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="MEnemy.cpp">
+      <Filter>Game\Objects\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="MRubbish.cpp">
+      <Filter>Game\Objects\Rubbish</Filter>
+    </ClCompile>
+    <ClCompile Include="MRubbishManager.cpp">
+      <Filter>Game\Util\RubbishManager</Filter>
     </ClCompile>
     <ClCompile Include="DamageViewer.cpp">
-      <Filter>Examples</Filter>
+      <Filter>Game\Util\DamageViewer</Filter>
+    </ClCompile>
+    <ClCompile Include="MEnemyManager.cpp">
+      <Filter>Game\Util\EnemyManager</Filter>
+    </ClCompile>
+    <ClCompile Include="MInventory.cpp">
+      <Filter>Game\UI\Inventory</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

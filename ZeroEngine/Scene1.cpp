@@ -3,24 +3,30 @@
 #include <math.h>
 
 Scene1::Scene1()
+	:mEnemy(NULL), initialized(false)
 {
 	//player = new ZeroSprite("Texture/Character/%s.png", "Character");
 	mPlayer = new MPlayer();
 	mPlayer->SetPos(0.f, 0.f);
+	RM->SetPlayer(mPlayer);
 
-	player2 = new ZeroSprite("Texture/Character/%s.png", "Character");
-	player2->SetPos(ZeroApp->GetWindowWidth() / 2, /*ZeroApp->GetWindowHeight() / 2*/ 0);
+	mEnemy = EM->addMEnemy();
+	mEnemy->SetPos(ZeroApp->GetWindowWidth() / 2, /*ZeroApp->GetWindowHeight() / 2*/ 0);
 	
-	for (int i = 0; i < 3; i++)
-	{
-		damageViewer[i] = new DamageViewer(player2);
-		PushScene(damageViewer[i]);
-	}
-	
-	PushScene(player2);
 	PushScene(mPlayer);
+	PushScene(mPlayer->mSword);
+
+	PushScene(mEnemy);
+
+	for (int i=0; i<3; i++)
+		PushScene(mEnemy->damageViewer[i]);
+
+	ZeroCameraMgr->SetCameraOn();
+	ZeroCameraMgr->SetTarget(mPlayer);
+	ZeroCameraMgr->SetScreen(1280, 1024);
 
 	hit = false;
+	enemyDeadInfo = {};
 }
 
 
@@ -32,31 +38,79 @@ void Scene1::Update(float eTime)
 {
 	ZeroIScene::Update(eTime);
 
-	if (player2->IsOverlapped(mPlayer->m_vSword) && !hit && mPlayer->attack)
+	//√ ±‚»≠
+	/*if (!initialized)
 	{
-		printf("HIT!\n");
 		
-		for (int i = 0; i < 3; i++)
+
+		initialized = true;
+	}*/
+
+	
+
+	if (mEnemy != NULL)
+	{
+		if (IsExistScene(mEnemy))
 		{
-			if (damageViewer[i]->Activate())
-				break;
+			if (mEnemy->IsOverlapped(mPlayer->mSword) && !hit && mPlayer->attack)
+			{
+				printf("HIT!\n");
+				
+				//printf("%f %f\n", mPlayer->Pos().x, mPlayer->Pos().y);
+				mEnemy->Damaged(30);
+				hit = true;
+			}
+			else if (mPlayer->attacked) hit = false;
+		}
+	}
+
+	if ((enemyDeadInfo = EM->findDeadMEnemy()).index > -1)
+	{
+		//auto it = EM->mEnemyManager.begin();
+		//advance(it, num);
+		MRubbish *rb = RM->addRubbish("apple");
+		PushScene(rb);
+		rb->SetPos(enemyDeadInfo.iter->Pos().x + enemyDeadInfo.iter->Width() / 2 - rb->Width()/2, enemyDeadInfo.iter->Pos().y + enemyDeadInfo.iter->Height() - rb->Height() );
+		EM->popMEnemy(enemyDeadInfo.iter);
+		PopScene(enemyDeadInfo.iter);
+	}
+
+	if ((gottenRubbishInfo = RM->findGottenRubbish()).index > -1)
+	{
+		if (gottenRubbishInfo.iter->tag.compare("apple") == 0)
+		{
+			MInven->ChangeImage(MInven->inventory[1], MInven->item_apple);
 		}
 
-		//printf("%f %f\n", mPlayer->Pos().x, mPlayer->Pos().y);
-		hit = true;
-	} else if (mPlayer->attacked) hit = false;
+		RM->popRubbish(gottenRubbishInfo.iter);
+		PopScene(gottenRubbishInfo.iter);
+	}
+
 }
 
 void Scene1::Render()
 {
 	ZeroIScene::Render();
 
-	player2->Render();
-	mPlayer->Render();
-	for (int i = 0; i < 3; i++)
+	for (auto iter = EM->mEnemyManager.begin(); iter != EM->mEnemyManager.end(); ++iter)
 	{
-		damageViewer[i]->Render();
+		(*iter)->Render();
 	}
+
+	for (auto iter = RM->mRubbishManager.begin(); iter != RM->mRubbishManager.end(); ++iter)
+	{
+		(*iter)->Render();
+	}
+
+	mPlayer->Render();
+
+	for (auto iter = EM->mEnemyManager.begin(); iter != EM->mEnemyManager.end(); ++iter)	
+	{
+		for (int i=0; i<3; ++i)
+			(*iter)->damageViewer[i]->Render();
+	}
+
+	MInven->Render();
 }
 
 float Scene1::Distance(float x1, float y1, float x2, float y2)

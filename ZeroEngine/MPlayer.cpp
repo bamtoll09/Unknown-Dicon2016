@@ -1,10 +1,10 @@
 #include "stdafx.h"
 #include "MPlayer.h"
 
-MPlayer::MPlayer() : ZeroSprite("Texture/Character/%s.png", "Character")
+MPlayer::MPlayer() : ZeroSprite("Texture/Object/Character/%s.png", "Player")
 {
-	m_vSword = new ZeroSprite("Texture/Weapon/%s.png", "Sword");
-	m_vSword->SetRotCenter(m_vSword->Width() / 2 - 20.f, m_vSword->Height() / 2 + 30.f);
+	mSword = new ZeroSprite("Texture/Object/Item/Weapon/%s.png", "Sword");
+	mSword->SetRotCenter(mSword->Width() / 2 - 20.f, mSword->Height() / 2 + 30.f);
 
 	m_vRectCollider = new ZeroRect();
 
@@ -24,8 +24,6 @@ MPlayer::~MPlayer()
 void MPlayer::Update(float eTime)
 {
 	ZeroSprite::Update(eTime);
-
-	m_vSword->SetPos(this->Pos().x + this->Width() - m_vSword->Width(), this->Pos().y - m_vSword->Height() + 220.f);
 	
 	speedXeTime = speed * eTime;
 
@@ -121,6 +119,8 @@ void MPlayer::Update(float eTime)
 	this->AddPosX(vcX); // a, d
 	this->AddPosY(vcY); // w, s
 
+	mSword->SetPos(this->Pos().x + this->Width() - mSword->Width(), this->Pos().y - mSword->Height() + 220.f);
+
 	if (!isAttacking)
 	{
 		if (ZeroInputMgr->GetKey('Z') == INPUTMGR_KEYDOWN)
@@ -133,20 +133,20 @@ void MPlayer::Update(float eTime)
 	if (isAttacking) // 120µµ
 	{
 		if (attackTime <= 0.1f) {
-			m_vSword->AddRot(1200.f * eTime);
+			mSword->AddRot(1200.f * eTime);
 			if (!attack)
 				attack = true;
 		} else if (attack) {
-			if (m_vSword->Rot() < 120.f || m_vSword->Rot() > 120.f)
-				m_vSword->SetRot(120.f);
+			if (mSword->Rot() < 120.f || mSword->Rot() > 120.f)
+				mSword->SetRot(120.f);
 			attack = false;
 		} else if (attackTime <= 0.2f) {
-			m_vSword->AddRot(-1200.f * eTime);
+			mSword->AddRot(-1200.f * eTime);
 			if (!attacked)
 				attacked = true;
 		} else if (attacked) {
-			if (m_vSword->Rot() < 0.f || m_vSword->Rot() > 0.f)
-				m_vSword->SetRot(0.f);
+			if (mSword->Rot() < 0.f || mSword->Rot() > 0.f)
+				mSword->SetRot(0.f);
 			attacked = false;
 		} else {
 			isAttacking = false;
@@ -168,5 +168,5 @@ void MPlayer::Render()
 {
 	ZeroSprite::Render();
 
-	m_vSword->Render();
+	mSword->Render();
 }

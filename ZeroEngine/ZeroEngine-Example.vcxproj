@@ -51,8 +51,8 @@
     <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
     <IntDir>$(Configuration)\</IntDir>
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>Include;DXUT\Core;DXUT\Optional;C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;$(IncludePath)</IncludePath>
-    <LibraryPath>Lib;C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Lib\x86;$(LibraryPath)</LibraryPath>
+    <IncludePath>Include;DXUT\Core;DXUT\Optional;C:\Program Files (x86)\Microsoft DirectX SDK %28June 2010%29\Include;$(IncludePath)</IncludePath>
+    <LibraryPath>Lib;C:\Program Files (x86)\Microsoft DirectX SDK %28June 2010%29\Lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -99,7 +99,12 @@
     <ClInclude Include="..\..\ZeroEngine\ZeroEngine\stdafx.h" />
     <ClInclude Include="DamageViewer.h" />
     <ClInclude Include="Examples.h" />
+    <ClInclude Include="MEnemy.h" />
+    <ClInclude Include="MEnemyManager.h" />
+    <ClInclude Include="MInventory.h" />
     <ClInclude Include="MPlayer.h" />
+    <ClInclude Include="MRubbish.h" />
+    <ClInclude Include="MRubbishManager.h" />
     <ClInclude Include="Scene1.h" />
     <ClInclude Include="SpriteExample.h" />
     <ClInclude Include="InputManagerExample.h" />
@@ -119,7 +124,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DamageViewer.cpp" />
+    <ClCompile Include="MEnemy.cpp" />
+    <ClCompile Include="MEnemyManager.cpp" />
+    <ClCompile Include="MInventory.cpp" />
     <ClCompile Include="MPlayer.cpp" />
+    <ClCompile Include="MRubbish.cpp" />
+    <ClCompile Include="MRubbishManager.cpp" />
     <ClCompile Include="Scene1.cpp" />
     <ClCompile Include="SpriteExample.cpp" />
     <ClCompile Include="InputManagerExample.cpp" />

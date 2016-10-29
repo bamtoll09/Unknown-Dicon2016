@@ -22,7 +22,7 @@ DamageViewer::~DamageViewer()
 
 void DamageViewer::Update(float eTime)
 {
-	if (activated)
+	if (activated && object != NULL)
 	{
 		ZeroFont::Update(eTime);
 
